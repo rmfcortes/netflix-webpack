@@ -5,11 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack serve --config webpack.dev.js",
-    "build": "webpack build --config webpack.prod.js",
-    "build:dev": "webpack build --config webpack.dev.js",
-    "build:prod": "webpack build --config webpack.prod.js",
-    "build:watch": "webpack build --watch --config webpack.prod.js",
+    "start": "webpack serve --mode=development --env outputDir=/dev_dist",
+    "build": "webpack build --mode=production --env outputDir=/dist",
+    "build:dev": "webpack build --mode=development --env outputDir=/dev_dist",
+    "build:prod": "webpack build --mode=production --env outputDir=/dist",
     "format": "prettier --write .",
     "lint": "eslint . --ext .tsx",
     "prepare": "husky install"
