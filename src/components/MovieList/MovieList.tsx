@@ -1,5 +1,5 @@
 import MovieCard from 'Components/MovieCard/MovieCard';
-import { movies } from 'src/constants/movies';
+import { movies } from 'src/constants/Movies';
 import { Movie } from 'src/models/Movie';
 import  './MovieList.scss';
 

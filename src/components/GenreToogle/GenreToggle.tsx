@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './genreToggle.scss'
+import './GenreToggle.scss'
 
 function GenreToggle(): JSX.Element {
     const genres = ['all', 'documentary', 'comedy', 'horror', 'crime'];
