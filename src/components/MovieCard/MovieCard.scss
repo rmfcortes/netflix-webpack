@@ -1,0 +1,31 @@
+@import 'colors';
+
+.movie-card {
+    position: relative;
+}
+
+.movie-card__context-menu {
+    display: none;
+    position: absolute;
+    top: 16px;
+    right: 14px;
+    width: 36px;
+    height: 36px;
+    border-radius: 36px;
+    background-color: $black-darker;
+    cursor: pointer;
+}
+
+.movie-card__context-menu::after {
+    content: '\2807';
+    font-size: 30px;
+    color: $white;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-32%, -50%);
+}
+
+.movie-card:hover .movie-card__context-menu {
+    display: block;
+}

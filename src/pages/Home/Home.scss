@@ -1,0 +1,19 @@
+@import 'colors';
+
+.divider {
+    height: 10px;
+    width: 100%;
+    background-color: $gray-light;
+}
+
+.movies_container {
+    margin: 20px 60px;
+}
+
+.movies_container__filters {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 19px;
+    border-bottom: 2px solid $gray;
+}
