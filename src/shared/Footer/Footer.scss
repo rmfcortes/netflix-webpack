@@ -1,0 +1,15 @@
+@import 'src/styles/colors';
+@import 'src/styles/mixins';
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 70px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $gray;
+}
+

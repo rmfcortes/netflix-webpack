@@ -1,0 +1,29 @@
+@import 'colors';
+
+.genre-container {
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-start;
+}
+
+.genre-title {
+    margin-right: 30px;
+    color: $white;
+    text-transform: uppercase;
+    cursor: pointer;
+    position: relative;
+}
+
+.genre-title:first-child {
+    margin-left: 2px;
+}
+
+.genre-title .selected::after {
+    content: '';
+    background: $primary;
+    height: 2px;
+    width: 100%;
+    position: absolute;
+    bottom: -21px;
+    left: 0;
+}

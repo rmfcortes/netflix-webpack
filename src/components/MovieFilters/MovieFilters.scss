@@ -1,0 +1,37 @@
+@import 'colors';
+
+.filters-list {
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-start;
+}
+
+.filters-list__item {
+    color: $white;
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: uppercase;
+    opacity: 0.6;
+    cursor: pointer;
+    position: relative;
+}
+
+.filters-list__item:not(:last-child) {
+    margin-right: 31px;
+}
+
+.filters-list__item.selected {
+    font-weight: 500;
+    opacity: 1;
+}
+
+.filters-list__item:last-child {
+    margin-right: 28px;
+}
+
+.filters-list__item:last-child::after {
+    content: url('../../assets/img/arrow_down.svg');
+    position: absolute;
+    right: -20px;
+    top: -10%;
+}
