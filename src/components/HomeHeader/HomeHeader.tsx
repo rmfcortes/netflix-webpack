@@ -1,21 +1,22 @@
-import Button from 'Shared/Button/Button';
-import Header from 'Shared/Header/Header';
-import SearchBar from 'Components/SearchBar/SearchBar';
+import AddMovieButton from 'Components/AddMovieButton/AddMovieButton';
 import SearchErrorBoundary from 'Components/SearchBar/SearchError';
+import SearchBar from 'Components/SearchBar/SearchBar';
+import Header from 'Shared/Header/Header';
 import './HomeHeader.scss';
-
 
 function HomeHeader(): JSX.Element {
     return(
-        <section className='home-header'>
-            <Header>
-                <Button className='btn-secondary' text='+ Add Movie' width='177px'/>
-            </Header>
-            <h1 className='home-header__title'>FIND YOUR MOVIE</h1>
-            <SearchErrorBoundary>
-                <SearchBar/>
-            </SearchErrorBoundary>
-        </section>
+        <>
+            <section className='home-header'>
+                <Header>
+                    <AddMovieButton></AddMovieButton>
+                </Header>
+                <h1 className='home-header__title'>FIND YOUR MOVIE</h1>
+                <SearchErrorBoundary>
+                    <SearchBar/>
+                </SearchErrorBoundary>
+            </section>
+        </>
     );
 }
 

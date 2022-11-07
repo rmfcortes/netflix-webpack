@@ -7,8 +7,11 @@ import Inception from '../../assets/img/movies/inception.jpg';
 import RDogs from '../../assets/img/movies/reservoir_dogs.jpg';
 import './MovieCard.scss';
 import MovieResume from 'Components/MovieResume/MovieResume';
+import ActionsMenu from 'Components/ActionsMenu/ActionsMenu';
+import { useState } from 'react';
 
 function MovieCard({ movie }: MovieProps): JSX.Element {
+    const [showMenu, setShowMenu] = useState(false);
     let img;
     switch (movie.image) {
         case 'PulpFiction':
@@ -30,12 +33,24 @@ function MovieCard({ movie }: MovieProps): JSX.Element {
             img = RDogs;
             break;
     }
+
+    const closeMovieActions = (): void => {
+        setShowMenu(false);
+    }
+    const showMovieActions = (): void => {
+        setShowMenu(true);
+    }
+
+    const actionsMenu = showMenu ? <ActionsMenu handleClose={ closeMovieActions } movie={ movie }/> : <></>
     return (
-        <article className='movie-card'>
-            <img src={ img } alt="movie_poster"/>
-            <button className='movie-card__context-menu'></button>
-            <MovieResume movie={ movie }/>
-        </article>
+        <>
+            <li className='movie-card'>
+                <img src={ img } alt="movie_poster"/>
+                <button className='movie-card__context-menu' onClick={ showMovieActions }></button>
+                <MovieResume movie={ movie }/>
+                { actionsMenu }
+            </li>
+        </>
     );
 }
 

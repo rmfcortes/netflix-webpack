@@ -1,0 +1,26 @@
+@import 'colors';
+
+.modal-movie-title {
+    color: $white;
+    font-weight: 300;
+    font-size: 40px;
+    line-height: 49px;
+    margin-top: 9px;
+}
+
+.display-block {
+  display: block;
+}
+  
+.display-none {
+  display: none;
+}
+
+.input__icon {
+  font-size: 24px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px;
+  color: $primary;  
+} 

@@ -1,0 +1,47 @@
+@import 'colors';
+
+.input-field {
+    height: 57px;
+    width: 100%;
+    padding-left: 18px;
+    font-size: 20px;
+    color: $white;
+    background: rgba(50, 50, 50, 0.948044);
+    opacity: 0.8;
+    border-radius: 4px;
+    border: none;
+}
+
+.input-field[type="date"]::before {
+    content: attr(placeholder) !important;
+    color: $white;
+    opacity: 0.3;
+}
+
+.input-field[type="date"]:focus::before {
+    content: '' !important;
+    color: transparent !important;
+}
+
+.input-field[type="date"]:valid:before {
+    content: '' !important;
+}
+
+.input-field[type="date"]:required:invalid::-webkit-datetime-edit {
+    color: transparent;
+}
+
+.input-field[type="date"]:focus::-webkit-datetime-edit {
+    color: transparent;
+}
+
+.input-field__icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: $primary;
+}
+
+::-webkit-calendar-picker-indicator {
+    display: none;
+}

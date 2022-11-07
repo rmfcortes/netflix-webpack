@@ -1,0 +1,54 @@
+@import 'colors';
+
+.select-container {
+    opacity: 1 !important;
+    cursor: pointer;
+}
+
+.selectBox {
+    position: relative;
+}
+
+.selectBox select {
+    width: 100%;
+}
+
+.overSelect {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+#checkboxes {
+    display: none;
+    width: 100%;
+    margin-left: -18px;
+    background: $black;
+    opacity: 1;
+    padding-bottom: 12px;
+    padding-top: 12px;
+    padding-left: 18px;
+}
+
+#checkboxes label {
+    display: block;
+    margin-bottom: 18px;
+}
+
+input[type=checkbox] {
+    filter: hue-rotate(150deg);
+    transform: scale(1.5);
+    cursor: pointer;
+    margin-right: 8px;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+}
