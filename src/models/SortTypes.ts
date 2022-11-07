@@ -1,0 +1,1 @@
+export type SortType = 'Release date' | 'Name';

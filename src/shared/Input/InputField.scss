@@ -1,0 +1,11 @@
+@import 'colors';
+
+.input-label {
+    display: block;
+    color: $primary;
+    margin: 30px 0 13px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    text-transform: uppercase;
+}

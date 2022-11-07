@@ -22,3 +22,9 @@
     color: $primary;
     background: rgba(96, 96, 96, 0.68);
 }
+
+.btn-outline {
+    color: $primary;
+    border: 1.5px solid $primary;
+    background: transparent;
+}
