@@ -7,4 +7,7 @@ export interface Movie {
     title: string;
     genre: string;
     year: number;
+    rate: number;
+    duration: string;
+    description: string;
 }

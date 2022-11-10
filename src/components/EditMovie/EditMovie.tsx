@@ -1,4 +1,4 @@
-import MovieDetails from 'Components/MovieDetails/MovieDetails';
+import MovieDetails from 'Components/MovieForm/MovieForm';
 import ResetSubmitButtons from 'Components/ResetSubmitButtons/ResetSubmitButtons';
 import { Movie } from 'src/models/Movie';
 

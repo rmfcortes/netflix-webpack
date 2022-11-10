@@ -7,7 +7,8 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
     'standard-with-typescript',
-    'eslint-config-prettier'
+    'eslint-config-prettier',
+    "plugin:react-hooks/recommended"
   ],
   overrides: [
   ],

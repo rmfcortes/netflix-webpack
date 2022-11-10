@@ -1,0 +1,8 @@
+@import 'colors';
+
+.header-panel__icon {
+   color: $primary;
+   font-size: 28px;
+   transform: rotateY(180deg);
+   cursor: pointer;
+}
