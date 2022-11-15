@@ -1,11 +1,11 @@
-import MovieDetails from 'Components/MovieDetails/MovieDetails';
+import MovieForm from 'Components/MovieForm/MovieForm';
 import ResetSubmitButtons from 'Components/ResetSubmitButtons/ResetSubmitButtons';
 
 function AddMovie(): JSX.Element {
     return(
         <>
             <h1 className='modal-movie-title'>ADD MOVIE</h1>
-            <MovieDetails/>
+            <MovieForm/>
             <div style={ { height: '60px'} }></div>
             <ResetSubmitButtons/>
         </>
