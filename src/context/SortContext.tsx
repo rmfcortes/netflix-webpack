@@ -3,10 +3,10 @@ import { createContext, useContext, useState } from 'react';
 import { SortType } from 'src/models/SortTypes';
 
 type ISortContext = [SortType, React.Dispatch<React.SetStateAction<SortType>>];
-const SortContext = createContext<ISortContext>([ 'Name', () => null ]);
+const SortContext = createContext<ISortContext>([ 'Genre', () => null ]);
 
 const SortContextProvider = ({ children }: {children: JSX.Element}): JSX.Element => {
-    const [sort, setSort] = useState<SortType>('Name')
+    const [sort, setSort] = useState<SortType>('Genre')
     return (
         <SortContext.Provider value={[ sort, setSort ]}>
             { children }

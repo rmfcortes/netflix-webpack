@@ -5,7 +5,7 @@ import MoviesFoundResult from 'Components/MoviesFoundResult/MoviesFoundResult';
 import Footer from 'Shared/Footer/Footer';
 import './Home.scss';
 import MovieList from 'Components/MovieList/MovieList';
-import { SortContextProvider } from 'src/context/SortContext';
+
 import { MovieSelectedContextProvider } from 'src/context/MovieSelectedContext';
 
 function Home(): JSX.Element {
@@ -14,16 +14,14 @@ function Home(): JSX.Element {
             <MovieSelectedContextProvider>
                 <HomeHeader/>
                 <div className='divider'></div>
-                <SortContextProvider>
-                    <section className='movies_container'>
-                        <nav className='movies_container__filters'>
-                            <GenreToggle/>
-                            <MovieSorting/>
-                        </nav>
-                        <MoviesFoundResult/>
-                        <MovieList/>
-                    </section>
-                </SortContextProvider>
+                <section className='movies_container'>
+                    <nav className='movies_container__filters'>
+                        <GenreToggle/>
+                        <MovieSorting/>
+                    </nav>
+                    <MoviesFoundResult/>
+                    <MovieList/>
+                </section>
             </MovieSelectedContextProvider>
             <Footer/>
         </>
