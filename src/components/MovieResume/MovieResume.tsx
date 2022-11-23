@@ -8,10 +8,10 @@ function MovieResume({ movie }: MovieProps): JSX.Element {
                 { movie.title }
             </p>
             <p className='movie-resume-container__genre'>
-                { movie.genre }
+                { movie.genres.join(', ') }
             </p>
             <div className='movie-resume-container__year'>
-                { movie.year }
+                { movie.release_date.split('-')[0] }
             </div>
         </article>
     );

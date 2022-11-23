@@ -1,12 +1,12 @@
-import FloatingMenu from 'Shared/FloatingMenu/FloatingMenu';
-import { useSortContext } from 'src/context/SortContext';
-import OutsideAlerter from 'src/hooks/OutsideAlerter';
-import { SortType } from 'src/models/SortTypes';
+import { useDispatch, useSelector } from 'react-redux';
 
-export interface Filter {
-    text: SortType;
-    handler: (text: SortType) => void;
-}
+import OutsideAlerter from 'src/hooks/OutsideAlerter';
+
+import moviesSlice, { getMovies } from 'src/store/moviesSlice';
+
+import FloatingMenu from 'Shared/FloatingMenu/FloatingMenu';
+import { SortType } from 'src/models/SortTypes';
+import { IStore } from 'src/models/Store';
 
 interface SortingMenuProps {
     show: boolean;
@@ -14,25 +14,24 @@ interface SortingMenuProps {
 }
 
 function SortingMenu({ show, handleClose }: SortingMenuProps): JSX.Element {
-
-    const [, setSort] = useSortContext();
+    const dispatch = useDispatch<any>();
+    const { sortMovies } = moviesSlice.actions;
+    const state = useSelector((state: IStore) => state.movies);
 
     const handleSetSorting = (text: SortType): void => {
         handleClose();
-        setSort(text);
+        dispatch(sortMovies(text));
+        dispatch(getMovies())
     }
-    const actions: Filter[] = [
-        {
-            text: 'Name',
-            handler: handleSetSorting,
-        }, 
-        {
-            text: 'Release date',
-            handler: handleSetSorting,
-        }
-    ];
+    const actions: SortType[] = ['Release date', 'Genre', 'Rating'];
     const actionsElements = actions.map(action => 
-        <li className='actions-menu__item' onClick={ () => action.handler(action.text) } key={ action.text }>{ action.text }</li>
+        <li 
+            className='actions-menu__item'
+            onClick={ () => action === state.sortBy ? handleClose() : handleSetSorting(action) }
+            key={ action }
+        >
+                { action }
+        </li>
     );
     return (
         <>
