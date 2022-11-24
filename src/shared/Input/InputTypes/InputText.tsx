@@ -1,14 +1,16 @@
+import { Field } from 'formik';
 import '../Input.scss';
 
 interface InputTextProps { 
+    name: string;
     placeholder?: string;
     type?: 'text' | 'number' | 'url';
-    value: string | number;
+    required: boolean;
 }
 
-function InputText({ placeholder, type='text', value }: InputTextProps): JSX.Element {
+function InputText({ placeholder, type='text', name, required }: InputTextProps): JSX.Element {
     return (
-        <input type={ type } className='input-field' placeholder={ placeholder } defaultValue={ value }/>
+        <Field type={ type } className='input-field' placeholder={ placeholder } name={ name } required={ required }/>
     )
 }
 

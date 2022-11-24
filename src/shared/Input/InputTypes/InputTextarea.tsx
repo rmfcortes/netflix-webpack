@@ -1,9 +1,14 @@
+import { Field } from 'formik';
 import './InputTextarea.scss'
 import '../Input.scss';
 
-function InputTextArea({ placeholder, value='' }: { placeholder?: string, value?: string }): JSX.Element {
+function InputTextArea({ placeholder, name, required }: { placeholder?: string, name: string, required: boolean }): JSX.Element {
+    const CustomInputTextarea = (field: any): JSX.Element => (
+        <textarea className='input-field textarea' placeholder={ placeholder } { ...field } required={ required }/>
+    );
+    
     return (
-        <textarea className='input-field textarea' placeholder={ placeholder } defaultValue={ value }/>
+        <Field name={ name } as={ CustomInputTextarea }/>
     )
 }
 

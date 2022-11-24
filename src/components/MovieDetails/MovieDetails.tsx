@@ -7,10 +7,10 @@ import './MovieDetails.scss';
 
 function MovieDetails(): JSX.Element {
     const [movie] = useMovieSelectedContext();
-    const rateEl = movie?.vote_average !== undefined && movie.vote_average > 0 
+    const rateEl = movie?.vote_average !== undefined && movie.vote_average !== null && movie.vote_average > 0 
                     ? <span className='movie-details__content__rate'>{movie?.vote_average}</span> 
                     : <></>
-    const runtimeEl = movie?.runtime !== undefined && movie.runtime > 0 
+    const runtimeEl = movie?.runtime !== undefined && movie.runtime !== null && movie.runtime > 0 
                     ? <span style={{ marginLeft: '51px' }}>{ movie?.runtime }min</span>
                     : <></>
 

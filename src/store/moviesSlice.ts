@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { Movie } from 'src/models/Movie';
 
 import { SortType } from 'src/models/SortTypes';
 import { IMovieStore, IStore, SortByIDs } from 'src/models/Store';
@@ -30,6 +31,20 @@ export const getMovies = createAsyncThunk('fetch-all-movies', async(args, { getS
     return await response.json();
 });
 
+export const postMovie = createAsyncThunk('post-movie', async (movie: Movie) => {
+    console.log(`args`, movie);
+    const response = await fetch('http://localhost:4000/movies', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({...movie, id: undefined, tagline: 'tag'})
+    })
+    console.log(`response`, response);
+    return await Promise.resolve();
+});
+
 const moviesSlice = createSlice({
     name: 'movies',
     initialState,
@@ -40,7 +55,7 @@ const moviesSlice = createSlice({
         filterMovies: (state, action) => {
             state.filter = action.payload;
         },
-        removeMovie: (state, action) => {
+        removeMovie: (state) => {
             state.data = state.data.filter(movie => movie);
         }
     },

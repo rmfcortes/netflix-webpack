@@ -4,17 +4,17 @@ import SelectWithCheckboxes from './InputTypes/InputSelect';
 import InputText from './InputTypes/InputText';
 import InputTextArea from './InputTypes/InputTextarea';
 
-function Input({ type= 'text', placeholder, value= '' }: InputProps): JSX.Element {
+function Input({ type= 'text', placeholder, name, required = false }: InputProps): JSX.Element {
     switch (type) {
         case 'date':
-            return <InputDate placeholder={ placeholder } value={ value.toString() }/>
+            return <InputDate placeholder={ placeholder } name={ name }/>
         case 'select':
             return <SelectWithCheckboxes placeholder= { placeholder ?? 'Select Genre' }/>
         case 'textarea':
-            return <InputTextArea placeholder= { placeholder ?? 'Select Genre' } value={ value.toString() }/>
+            return <InputTextArea placeholder= { placeholder ?? 'Select Genre' } name={ name } required= { required }/>
     
         default:
-            return <InputText type={ type } placeholder={ placeholder } value={ value }/>
+            return <InputText type={ type } placeholder={ placeholder } name={ name } required= { required }/>
     }
 }
 
