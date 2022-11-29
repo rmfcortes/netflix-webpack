@@ -19,6 +19,12 @@ const initialState: IMovieStore = {
 
 export const getMovies = createAsyncThunk('fetch-all-movies', async(args, { getState }) => {
     const state = getState() as IStore;
+    const params = getMoviesRequestParams(state);
+    const response = await fetch('http://localhost:4000/movies' + params);
+    return await response.json();
+});
+
+const getMoviesRequestParams = (state: IStore): string => {
     const limit = `?limit=${state.movies.limit}`
     const offset = `&offset=${state.movies.offset}`
     const sortBy = state.movies.sortBy !== undefined ? `&sortBy=${SortByIDs[state.movies.sortBy]}` : ''
@@ -26,23 +32,52 @@ export const getMovies = createAsyncThunk('fetch-all-movies', async(args, { getS
     const search = state.movies.search !== undefined ? `&search=${state.movies.search}` : ''
     const searchBy = state.movies.searchBy !== undefined ? `&searchBy=${state.movies.searchBy}` : ''
     const filter = state.movies.filter !== undefined ? `&filter=${state.movies.filter === 'all' ? '' : state.movies.filter}` : ''
-    const params = limit + offset + sortBy + sortOrder + search + searchBy + filter;
-    const response = await fetch('http://localhost:4000/movies' + params);
-    return await response.json();
-});
+    return limit + offset + sortBy + sortOrder + search + searchBy + filter;
+}
 
-export const postMovie = createAsyncThunk('post-movie', async (movie: Movie) => {
-    console.log(`args`, movie);
-    const response = await fetch('http://localhost:4000/movies', {
+export const postMovie = createAsyncThunk('post-movie', async (movie: Movie, { getState }) => {
+    const state = getState() as IStore;
+    await fetch('http://localhost:4000/movies', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({...movie, id: undefined, tagline: 'tag'})
-    })
-    console.log(`response`, response);
-    return await Promise.resolve();
+    });
+    const params = getMoviesRequestParams(state);
+    const response = await fetch('http://localhost:4000/movies' + params);
+    return await response.json();
+});
+
+export const editMovie = createAsyncThunk('edit-movie', async (movie: Movie, { getState }) => {
+    const state = getState() as IStore;
+    await fetch('http://localhost:4000/movies', {
+        method: 'PUT',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ ...movie })
+    });
+    const params = getMoviesRequestParams(state);
+    const response = await fetch('http://localhost:4000/movies' + params);
+    return await response.json();
+});
+
+export const deleteMovie = createAsyncThunk('delete-movie', async (movie: Movie, { getState }) => {
+    const state = getState() as IStore;
+    await fetch(`http://localhost:4000/movies/${movie.id}`, {
+        method: 'DELETE',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ ...movie })
+    });
+    const params = getMoviesRequestParams(state);
+    const response = await fetch('http://localhost:4000/movies' + params);
+    return await response.json();
 });
 
 const moviesSlice = createSlice({
@@ -57,6 +92,9 @@ const moviesSlice = createSlice({
         },
         removeMovie: (state) => {
             state.data = state.data.filter(movie => movie);
+        },
+        clearAddedMovieState: (state) => {
+            state.new_added = false;
         }
     },
     extraReducers: (builder) => {
@@ -70,6 +108,19 @@ const moviesSlice = createSlice({
         })
         .addCase(getMovies.rejected, (state) => {
             state.fetchStatus = 'failed'
+        })
+        .addCase(postMovie.fulfilled, (state, action) => {
+            state.new_added = true;
+            state.data = action.payload.data;
+            state.fetchStatus = 'succeeded';
+        })
+        .addCase(editMovie.fulfilled, (state, action) => {
+            state.data = action.payload.data;
+            state.fetchStatus = 'succeeded';
+        })
+        .addCase(deleteMovie.fulfilled, (state, action) => {
+            state.data = action.payload.data;
+            state.fetchStatus = 'succeeded';
         })
     }
 })

@@ -1,13 +1,20 @@
+import { useDispatch } from 'react-redux';
 import { Form, Formik } from 'formik';
+
+import { editMovie } from 'src/store/moviesSlice';
 
 import MovieDetails from 'Components/MovieForm/MovieForm';
 import ResetSubmitButtons from 'Components/ResetSubmitButtons/ResetSubmitButtons';
 import { Movie } from 'src/models/Movie';
 
 function EditMovie({movie}: { movie: Movie }): JSX.Element {
+    const dispatch = useDispatch<any>();
     const classMovie = new Movie(movie);
-    const submitHandler = (values: Movie): void => {
-        console.log(`values`, values);
+    const submitHandler = (editedMovie: Movie): void => {
+        if (editedMovie.genres.length === 0) {
+            return alert('Selecciona por lo menos un género')
+        }
+        dispatch(editMovie(editedMovie))
     }
     return(
         <>
