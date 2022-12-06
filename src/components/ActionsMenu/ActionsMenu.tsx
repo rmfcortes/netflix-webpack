@@ -1,5 +1,8 @@
 import { useState } from 'react';
 
+import { useDispatch } from 'react-redux';
+import { deleteMovie } from 'src/store/moviesSlice';
+
 import DeleteMovie from 'Components/DeleteMovie/DeleteMovie';
 import EditMovie from 'Components/EditMovie/EditMovie';
 
@@ -15,6 +18,12 @@ interface ActionsMenuProps {
 }
 
 function ActionsMenu({ handleClose, movie }: ActionsMenuProps): JSX.Element {
+
+    const dispatch = useDispatch<any>();
+    const deleteMovieHandler = (): void => {
+        dispatch(deleteMovie(movie));
+        hideDeleteModal();
+    }
 
     const  [showDelete, setShowDelete] = useState(false);
     const showDeleteModal = (): void => {
@@ -48,8 +57,12 @@ function ActionsMenu({ handleClose, movie }: ActionsMenuProps): JSX.Element {
         <li className='actions-menu__item' onClick={ action.handler } key={ action.text }>{ action.text }</li>
     );
 
-    const modalDelete = showDelete && <Modal handleClose={ hideDeleteModal }><DeleteMovie/></Modal>
-    const modalEdit = showEdit && <Modal handleClose={ hideEditModal }><EditMovie movie={movie}/></Modal>
+    const modalDelete = showDelete && 
+        <Modal handleClose={ hideDeleteModal }>
+            <DeleteMovie deleteMovieHandler={deleteMovieHandler}/>
+        </Modal>;
+
+    const modalEdit = showEdit && <Modal handleClose={ hideEditModal }><EditMovie movie={movie}/></Modal>;
 
     return (
         <OutsideAlerter handler={ handleClose }>

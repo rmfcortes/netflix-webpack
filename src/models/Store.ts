@@ -15,6 +15,7 @@ export interface IMovieStore {
     filter?: '' | 'documentary' | 'comedy' | 'horror' | 'crime' | 'all';
     search?: string;
     searchBy?: 'title' | 'genres';
+    new_added?: boolean;
 }
 
 export const SortByIDs = {

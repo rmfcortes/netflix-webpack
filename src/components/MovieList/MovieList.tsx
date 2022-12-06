@@ -12,7 +12,6 @@ import  './MovieList.scss';
 function MovieList(): JSX.Element {
     const dispatch = useDispatch<any>();
     const state = useSelector((state: IStore) => state.movies);
-    console.log(`movies`, state);
 
     useEffect(() => {
         dispatch(getMovies())
@@ -21,7 +20,7 @@ function MovieList(): JSX.Element {
     return (
         <ul className='movies-container'>
             {
-                state.data.map((movie: Movie) => <MovieCard movie={ movie } key={ movie.poster_path }/>)
+                state.data.map((movie: Movie) => <MovieCard movie={ movie } key={ movie.id }/>)
             }
         </ul>
     );
