@@ -17,11 +17,17 @@ const initialState: IMovieStore = {
     sortOrder: 'desc',
 }
 
-export const getMovies = createAsyncThunk('fetch-all-movies', async(args, { getState }) => {
+let lastParams = '';
+let lastResponse: Response;
+
+export const getMovies = createAsyncThunk('fetch-all-movies', async(_args, { getState }) => {
     const state = getState() as IStore;
     const params = getMoviesRequestParams(state);
-    const response = await fetch('http://localhost:4000/movies' + params);
-    return await response.json();
+    if (params !== lastParams) {
+        lastParams = params;
+        lastResponse = await fetch('http://localhost:4000/movies' + params);
+    }
+    return await lastResponse.json();
 });
 
 const getMoviesRequestParams = (state: IStore): string => {

@@ -7,7 +7,8 @@ module.exports = (env) => {
         entry: './src/index.tsx',
         output: {
             path: path.join(__dirname, env.outputDir),
-            filename: 'index_bundle.js'
+            filename: 'index_bundle.js',
+            publicPath: '/'
         },
         module: {
             rules: [
@@ -41,6 +42,9 @@ module.exports = (env) => {
             new HtmlWebpackPlugin({
                 template: './src/index.html'
             })
-        ]
+        ],
+        devServer: {
+            historyApiFallback: true,
+        },
     })
 } 

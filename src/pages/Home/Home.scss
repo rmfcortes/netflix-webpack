@@ -1,4 +1,5 @@
 @import 'colors';
+@import 'mixins';
 
 .divider {
     height: 10px;
@@ -16,4 +17,9 @@
     justify-content: space-between;
     padding-bottom: 19px;
     border-bottom: 2px solid $gray;
+}
+
+.movie-details__poster {
+    max-width: 320px;
+    min-height: 480px;
 }
