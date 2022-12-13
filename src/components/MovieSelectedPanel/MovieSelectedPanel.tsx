@@ -1,3 +1,4 @@
+import { useSearchParams } from 'react-router-dom';
 import Header from 'Shared/Header/Header';
 import './MovieSelectedPanel.scss';
 
@@ -9,8 +10,13 @@ import { useMovieSelectedContext } from 'src/context/MovieSelectedContext';
 
 function MovieSelectedPanel(): JSX.Element {
     const [, setMovieSelected] = useMovieSelectedContext();
+    const [searchParams, setSearchParams] = useSearchParams();
 
-    const handleSearchClick = (): void => setMovieSelected(null);
+    const handleSearchClick = (): void => {
+        setMovieSelected(null);
+        searchParams.delete('movie');
+        setSearchParams(searchParams);
+    };
     return (
         <section style={{ paddingTop: '20px' }}>
             <Header>

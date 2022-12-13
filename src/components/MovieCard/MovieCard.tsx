@@ -1,4 +1,5 @@
 import { BaseSyntheticEvent, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 import { useMovieSelectedContext } from 'src/context/MovieSelectedContext';
 
@@ -20,9 +21,12 @@ function MovieCard({ movie }: MovieProps): JSX.Element {
         setShowMenu(true);
     }
 
+    const [searchParams, setSearchParams] = useSearchParams();
     const [, setMovieSelected] = useMovieSelectedContext();
     
     const handleMovieSelected = (movie: Movie): void => {
+        searchParams.set('movie', movie.id.toString());
+        setSearchParams(searchParams);
         setMovieSelected(movie);
     }
 

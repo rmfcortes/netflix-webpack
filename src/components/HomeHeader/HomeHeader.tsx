@@ -1,11 +1,12 @@
-import { useMovieSelectedContext } from 'src/context/MovieSelectedContext';
+import { useSearchParams } from 'react-router-dom';
 import SearchPanel from 'Components/SearchPanel/SearchPanel';
-import './HomeHeader.scss';
 import MovieSelectedPanel from 'Components/MovieSelectedPanel/MovieSelectedPanel';
+import './HomeHeader.scss';
 
 function HomeHeader(): JSX.Element {
-    const  [ movieSelected ] = useMovieSelectedContext(); 
-    const content = movieSelected !== null ? <MovieSelectedPanel/> : <SearchPanel/>
+    const [searchParams] = useSearchParams();
+    const movie = searchParams.get('movie');
+    const content = movie !== null ? <MovieSelectedPanel/> : <SearchPanel/>
     return(
         <>
             { content }

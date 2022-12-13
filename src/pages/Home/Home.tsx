@@ -1,5 +1,7 @@
+import { Outlet } from 'react-router-dom';
+
 import GenreToggle from 'Components/GenreToogle/GenreToggle';
-import HomeHeader from 'Components/HomeHeader/HomeHeader';
+
 import MovieSorting from 'Components/MovieSorting/MovieSorting';
 import MoviesFoundResult from 'Components/MoviesFoundResult/MoviesFoundResult';
 import Footer from 'Shared/Footer/Footer';
@@ -12,7 +14,7 @@ function Home(): JSX.Element {
     return(
         <>
             <MovieSelectedContextProvider>
-                <HomeHeader/>
+                <Outlet/>
                 <div className='divider'></div>
                 <section className='movies_container'>
                     <nav className='movies_container__filters'>
