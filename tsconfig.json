@@ -2,6 +2,7 @@
     "compilerOptions": {
       "baseUrl": "./",
       "outDir": "./dist/",
+      "lib": ["DOM"],
       "noImplicitAny": true,
       "module": "ESNext",
       "target": "es5",
