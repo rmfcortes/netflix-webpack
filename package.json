@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --watchAll",
+    "test:coverage": "jest --coverage",
     "start": "webpack serve --mode=development --env outputDir=/dev_dist",
     "build": "webpack build --mode=production --env outputDir=/dist",
     "build:dev": "webpack build --mode=development --env outputDir=/dev_dist",
@@ -82,6 +83,13 @@
     "webpack-merge": "^5.8.0"
   },
   "jest": {
+    "collectCoverage": true,
+    "collectCoverageFrom": ["./src/**"],
+    "coverageThreshold": {
+      "global": {
+        "lines": 70
+      }
+    },
     "rootDir": "./",
     "modulePaths": [
       "<rootDir>"
@@ -89,9 +97,6 @@
     "moduleNameMapper": {
       "\\.(css|less|sass|scss)$": "<rootDir>/config/styleMock.js",
       "\\.(gif|ttf|eot|svg)$": "<rootDir>/config/fileMock.js"
-    },
-    "setupFilesAfterEnv": [
-      "<rootDir>/src/setupTests.ts"
-    ]
+    }
   }
 }
