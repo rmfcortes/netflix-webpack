@@ -11,7 +11,8 @@
     "build:prod": "webpack build --mode=production --env outputDir=/dist",
     "format": "prettier --write .",
     "lint": "eslint . --ext .tsx",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "cypress": "cypress open"
   },
   "repository": {
     "type": "git",
@@ -54,6 +55,7 @@
     "babel-jest": "^29.3.1",
     "babel-loader": "^8.2.5",
     "css-loader": "^6.7.1",
+    "cypress": "^12.1.0",
     "eslint": "^8.25.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-standard-with-typescript": "^23.0.0",
@@ -87,6 +89,9 @@
     "moduleNameMapper": {
       "\\.(css|less|sass|scss)$": "<rootDir>/config/styleMock.js",
       "\\.(gif|ttf|eot|svg)$": "<rootDir>/config/fileMock.js"
-    }
+    },
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/setupTests.ts"
+    ]
   }
 }

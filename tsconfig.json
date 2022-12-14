@@ -14,6 +14,13 @@
         "Shared/*": ["src/shared/*"],
         "Components/*": ["src/components/*"],
         "src/*": ["src/*"],
-      }
-    }
+      },
+      "types": ["jest", "node", "@types/testing-library__jest-dom"]
+    },
+    "exclude": [
+      "node_modules",
+      "cypress.config.ts",
+      "cypress/**/*.ts",
+      "cypress/**/*.js",
+    ]
   }
