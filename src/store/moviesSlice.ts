@@ -96,9 +96,6 @@ const moviesSlice = createSlice({
         filterMovies: (state, action) => {
             state.filter = action.payload;
         },
-        removeMovie: (state) => {
-            state.data = state.data.filter(movie => movie);
-        },
         clearAddedMovieState: (state) => {
             state.new_added = false;
         }
